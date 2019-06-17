@@ -9,7 +9,8 @@ let payload =
   Grpc.Chat.MessageRequest.make(
     ~channel="channel",
     ~text="name",
-    ~urgency=Grpc.Chat.Urgency.UrgencyNormal,
+  ~urgency=Grpc.Chat.Urgency.UrgencyNormal,
+  ~bajteczki=Node.Buffer.fromString("ala") ,
     (),
   );
 

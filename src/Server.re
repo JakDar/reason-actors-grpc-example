@@ -6,16 +6,17 @@ let sendMessageErrorHandler = error =>
 let sendMessage = (_call, request, callback) => {
   Js.log2("sendMessageRequest=", request);
   Js.log2("urgency=", request->Grpc.Chat.MessageRequest.urgencyGet);
-  let (channelName, text, urgency) =
+  let (_, text, urgency,bajteczki) =
     Grpc.Chat.MessageRequest.(
       Belt.Option.(
         request->channelGet->getExn,
         request->textGet->getExn,
         request->urgencyGet->getExn,
+        request->bajteczkiGet->getExn,
       )
     );
 
-  Js.log4("ChatServer.re got MessageRequest", channelName, text, urgency);
+  Js.log4("ChatServer.re got MessageRequest",  text, urgency,bajteczki);
 
   Grpc.Chat.MessageReply.make(~error="not allowed", ())
   |> Grpc.reply(callback);
@@ -27,3 +28,6 @@ let chatService =
 let credentials = Grpc.Server.Credentials.Insecure.make();
 
 let server = Grpc.Server.make("127.0.0.1:12345", ~credentials, ~chatService);
+
+
+
