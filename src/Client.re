@@ -1,20 +1,19 @@
-let serverAddress = "127.0.0.1:12345";
+/* let serverAddress = "127.0.0.1:12345"; */
 
-let credentials = Grpc.Client.Credentials.createInsecure();
+/* let credentials = Grpc.Client.Credentials.createInsecure(); */
 
-let chatServiceClient =
-  Grpc.Chat.ChatService.Client.makeClient(serverAddress, credentials);
+/* let chatServiceClient = */
+/*   Grpc.Chat.ChatService.Client.makeClient(serverAddress, credentials); */
+/* let payload = */
+/*   Grpc.Chat.MessageRequest.make( */
+/*     ~channel="channel", */
+/*     ~text="name", */
+/*   ~urgency=Grpc.Chat.Urgency.UrgencyNormal, */
+/*   ~bajteczki=Node.Buffer.fromString("ala") , */
+/*     (), */
+/*   ); */
 
-let payload =
-  Grpc.Chat.MessageRequest.make(
-    ~channel="channel",
-    ~text="name",
-  ~urgency=Grpc.Chat.Urgency.UrgencyNormal,
-  ~bajteczki=Node.Buffer.fromString("ala") ,
-    (),
-  );
-
-chatServiceClient
-->Grpc.Chat.ChatService.Client.SendMessageRpc.invokeFuture(payload)
-->Future.mapOk(res => Js.log2("Ok", res))
-->Future.tapError(err => Js.log2("Error", err));
+/* chatServiceClient */
+/* ->Grpc.Chat.ChatService.Client.SendMessageRpc.invokeFuture(payload) */
+/* ->Future.mapOk(res => Js.log2("Ok", res)) */
+/* ->Future.tapError(err => Js.log2("Error", err)); */

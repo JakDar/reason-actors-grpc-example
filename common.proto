@@ -1,5 +1,5 @@
 syntax = "proto3";
-package com.paletten.werk.proto.common.config;
+package common;
 
 message WholeConfiguration {
   Building building = 1;
@@ -11,10 +11,9 @@ message WholeConfiguration {
   EnergyStandard energyStandard = 7;
   Finish finish = 8;
   FinishStyle finishStyle = 9;
-  WholeConfiguration wholeConfiguration = 10;
-  Addition addition = 11; //optional
-  string userEmail = 12;
-  string userPhoneNumber = 13 ; //optional
+  Addition addition = 10; //optional
+  string userEmail = 11;
+  string userPhoneNumber = 12 ; //optional
 }
 
 message Building {

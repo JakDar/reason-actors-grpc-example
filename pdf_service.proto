@@ -1,11 +1,11 @@
 syntax = "proto3";
-package com.paletten.werk.proto.pdf.service;
+package pdfservice;
 import "common.proto";
 
 service PdfService { rpc GetPdf(PdfRequest) returns (PdfResponse); }
 
 message PdfRequest {
-  com.paletten.werk.proto.common.config.WholeConfiguration configuration = 1;
+  common.WholeConfiguration configuration = 1;
 }
 
 message PdfResponse {

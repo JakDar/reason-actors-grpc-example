@@ -1,33 +1,26 @@
-/* Error handler for ChatService.SendMessage RPC */
-let sendMessageErrorHandler = error =>
-  Grpc.Chat.MessageReply.make(~error, ());
-
-/* Implementation for ChatService.sendMessage RPC */
 let sendMessage = (_call, request, callback) => {
-  Js.log2("sendMessageRequest=", request);
-  Js.log2("urgency=", request->Grpc.Chat.MessageRequest.urgencyGet);
-  let (_, text, urgency,bajteczki) =
-    Grpc.Chat.MessageRequest.(
-      Belt.Option.(
-        request->channelGet->getExn,
-        request->textGet->getExn,
-        request->urgencyGet->getExn,
-        request->bajteczkiGet->getExn,
-      )
-    );
+  Js.log(request);
 
-  Js.log4("ChatServer.re got MessageRequest",  text, urgency,bajteczki);
+  let file =
+    Node.Fs.readFileSync("/Users/jakubdarul/tmp/ola.pdf",`binary) -> Node.Buffer.fromStringWithEncoding(`binary);
+  
 
-  Grpc.Chat.MessageReply.make(~error="not allowed", ())
-  |> Grpc.reply(callback);
+  let response = Grpc.Pdfservice.PdfResponse.make(~pdfForClient=file, ~pdfForAdmin=file,());
+
+  Grpc.reply(callback, response);
 };
 
-let chatService =
-  Grpc.Chat.ChatService.make(~sendMessage, ~sendMessageErrorHandler);
+let errorHandler = str => {
+  Js.log(str);
+  Grpc.Pdfservice.PdfResponse.make();
+};
+
+let pdfService =
+  Grpc.Pdfservice.PdfService.make(
+    ~getPdf=sendMessage,
+    ~getPdfErrorHandler=errorHandler,
+  );
 
 let credentials = Grpc.Server.Credentials.Insecure.make();
 
-let server = Grpc.Server.make("127.0.0.1:12345", ~credentials, ~chatService);
-
-
-
+let server = Grpc.Server.make("127.0.0.1:12345", ~credentials, ~pdfService);
