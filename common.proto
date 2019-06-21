@@ -28,11 +28,24 @@ message Project {
   string name = 4;
   string title = 5;
   string description = 6;
-  int32 metrage = 7;
-  int32 floor = 8;
-  bool residentialAttic = 9;
-  repeated string photos = 10;
+  ProjectPdfDetails pdfDetails = 7;
+  int32 metrage = 8;
+  int32 floor = 9;
+  bool residentialAttic = 10;
+  repeated string photos = 11;
+  string summary =12;
 }
+
+ message ProjectPdfDetails{
+   string planPhoto = 1;
+   string sidePlanPhoto = 2;
+   int32 cubatureCm = 3;
+   int32 heightCm = 4;
+   int32 roofAngle = 5;
+   string roofArea = 6;
+   int32 minimalParcelWidthCm = 7;
+   int32 minimalParcelLengthCm = 8;
+ }
 
 message Roof {
   string id = 1;
@@ -42,6 +55,7 @@ message Roof {
   string title = 5;
   string description = 6;
   repeated string photos = 7;
+  string summary =8;
 }
 
 message RoofColor {
@@ -61,6 +75,7 @@ message Elevation {
   string title = 5;
   string description = 6;
   repeated string photos = 7;
+  string summary = 8;
 }
 
 message ElevationColor {

@@ -22,4 +22,4 @@ let pdfService =
 
 let credentials = Grpc.Server.Credentials.Insecure.make();
 
-let server = Grpc.Server.make("192.168.10.100:12345", ~credentials, ~pdfService);
+let server = Grpc.Server.make("127.0.0.1:12345", ~credentials, ~pdfService);
