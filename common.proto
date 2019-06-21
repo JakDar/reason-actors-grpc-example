@@ -12,8 +12,6 @@ message WholeConfiguration {
   Finish finish = 8;
   FinishStyle finishStyle = 9;
   Addition addition = 10; //optional
-  string userEmail = 11;
-  string userPhoneNumber = 12 ; //optional
 }
 
 message Building {
@@ -31,7 +29,7 @@ message Project {
   string title = 5;
   string description = 6;
   int32 metrage = 7;
-  uint32 floor = 8;
+  int32 floor = 8;
   bool residentialAttic = 9;
   repeated string photos = 10;
 }

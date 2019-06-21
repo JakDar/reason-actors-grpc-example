@@ -3,9 +3,8 @@ let sendMessage = (_call, request, callback) => {
 
   let file =
     Node.Fs.readFileSync("/Users/jakubdarul/tmp/ola.pdf",`binary) -> Node.Buffer.fromStringWithEncoding(`binary);
-  
 
-  let response = Grpc.Pdfservice.PdfResponse.make(~pdfForClient=file, ~pdfForAdmin=file,());
+  let response = Grpc.Pdfservice.PdfResponse.make(~pdf=file,());
 
   Grpc.reply(callback, response);
 };
@@ -23,4 +22,4 @@ let pdfService =
 
 let credentials = Grpc.Server.Credentials.Insecure.make();
 
-let server = Grpc.Server.make("127.0.0.1:12345", ~credentials, ~pdfService);
+let server = Grpc.Server.make("192.168.10.100:12345", ~credentials, ~pdfService);

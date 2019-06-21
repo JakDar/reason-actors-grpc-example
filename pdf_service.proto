@@ -9,6 +9,5 @@ message PdfRequest {
 }
 
 message PdfResponse {
-  bytes pdfForClient = 1;
-  bytes pdfForAdmin = 2;
+  bytes pdf= 2;
 }
